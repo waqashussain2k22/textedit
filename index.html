@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Text Editor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        #main {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .button {
+            font-weight: bolder;
+            border: none;
+            background-color: #ccc;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 5px;
+            color: #3d3c3c;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #b2b2e5;
+        }
+
+        #para-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #para {
+            font-size: 16px;
+            box-sizing: border-box;
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #d9534f;
+            border-radius: 8px;
+            resize: none;
+            background-color: #fff;
+            color: #333;
+        }
+
+        input[type="color"] {
+            display: none;
+        }
+    </style>
+    <title>Your Page Title</title>
+</head>
+
+<body>
+    <div id="main">
+        <div id="btn">
+            <button class="button" id="tb" onclick="tb()"><b>Bold</b></button>
+            <button class="button" id="tn" onclick="tn()">Light</button>
+            <button class="button" id="ti" onclick="ti()"><b><i>Italic</i></b></button>
+            <button class="button" id="tu" onclick="tu()"><b><u>Underline</u></b></button>
+            <button class="button" id="tleft" onclick="tl()">Left</button>
+            <button class="button" id="tcenter" onclick="tc()">Center</button>
+            <button class="button" id="tright" onclick="tr()">Right</button>
+            <button class="button" onclick="showColorPicker('textColorPicker')">Text Color</button>
+            <button class="button" onclick="showColorPicker('bgColorPicker')">Background Color</button>
+            <button class="button" onclick="changeTextSize()">Increase Font Size</button>
+            <button class="button" onclick="decreaseTextSize()">Decrease Font Size</button>
+            <button class="button" onclick="uppercaseletter()">Uppercase</button>
+            <button class="button" onclick="lowercaseletter()">Lowercase</button>
+        </div>
+
+        <div id="para-container">
+            <textarea id="para" cols="90" rows="20"></textarea>
+        </div>
+
+        <input type="color" id="textColorPicker" onchange="changeColor('color')">
+        <input type="color" id="bgColorPicker" onchange="changeColor('backgroundColor')">
+    </div>
+
+    <script>
+        function tb() {
+            var textarea = document.getElementById("para");
+            textarea.style.fontWeight = "bold";
+        }
+
+        function tn() {
+            var textarea = document.getElementById("para");
+            textarea.style.fontWeight = "lighter";
+        }
+
+        function ti() {
+            var textarea = document.getElementById("para");
+            textarea.style.fontStyle = "italic";
+        }
+
+        function tu() {
+            var textarea = document.getElementById("para");
+            textarea.style.textDecoration = "underline";
+        }
+
+        function tl() {
+            var textarea = document.getElementById("para");
+            textarea.style.textAlign = "left";
+        }
+
+        function tc() {
+            var textarea = document.getElementById("para");
+            textarea.style.textAlign = "center";
+        }
+
+        function tr() {
+            var textarea = document.getElementById("para");
+            textarea.style.textAlign = "right";
+        }
+
+        function showColorPicker(colorPickerId) {
+            var colorPicker = document.getElementById(colorPickerId);
+            colorPicker.click();
+        }
+
+        function changeColor(styleProperty) {
+            var textarea = document.getElementById("para");
+            var colorPicker = document.getElementById(styleProperty === 'color' ? 'textColorPicker' : 'bgColorPicker');
+            textarea.style[styleProperty] = colorPicker.value;
+        }
+
+        function changeTextSize() {
+            var textarea = document.getElementById("para");
+            var currentSize = parseInt(window.getComputedStyle(textarea).fontSize);
+            textarea.style.fontSize = (currentSize + 1) + "px";
+        }
+
+        function decreaseTextSize() {
+            var textarea = document.getElementById("para");
+            var currentSize = parseInt(window.getComputedStyle(textarea).fontSize);
+            textarea.style.fontSize = (currentSize - 1) + "px";
+        }
+
+        function uppercaseletter() {
+            var textarea = document.getElementById("para");
+            textarea.style.textTransform = "uppercase";
+        }
+
+        function lowercaseletter() {
+            var textarea = document.getElementById("para");
+            textarea.style.textTransform = "lowercase";
+        }
+    </script>
+
+</body>
+
+</html>
